@@ -4,68 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canım Annem İçin ❤️</title>
+    <title>Canım Annem ❤️</title>
     <style>
-        /* Arka Plan ve Genel Tasarım */
         body { 
             background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); 
-            height: 100vh; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            color: white; 
-            text-align: center;
-            overflow: hidden;
+            height: 100vh; margin: 0; display: flex; align-items: center; justify-content: center; 
+            font-family: sans-serif; color: white; text-align: center;
         }
-
-        /* Beyaz Şeffaf Kart */
         .card {
-            background: rgba(255, 255, 255, 0.25);
-            padding: 40px 20px;
-            border-radius: 30px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            width: 85%;
-            max-width: 400px;
+            background: rgba(255, 255, 255, 0.2); padding: 40px 20px; border-radius: 30px;
+            backdrop-filter: blur(10px); width: 85%; max-width: 400px;
+            border: 1px solid rgba(255,255,255,0.4);
         }
-
-        /* Atan Kalp Efekti */
-        .heart { 
-            font-size: 70px; 
-            margin-bottom: 20px; 
-            display: inline-block;
-            animation: pulse 1.5s infinite; 
-        }
-
-        @keyframes pulse { 
-            0% { transform: scale(1); } 
-            50% { transform: scale(1.15); } 
-            100% { transform: scale(1); } 
-        }
-
-        h1 { font-size: 26px; margin: 10px 0; }
-        p { font-size: 18px; opacity: 0.9; margin-bottom: 30px; font-style: italic; }
-
-        /* Buton Tasarımı */
-        .btn-play { 
-            background: #ffffff; 
-            color: #ff6b6b; 
-            border: none; 
-            padding: 15px 35px; 
-            border-radius: 50px; 
-            font-weight: bold; 
-            font-size: 18px; 
-            cursor: pointer; 
-            transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .btn-play:active {
-            transform: scale(0.9);
+        .heart { font-size: 70px; animation: pulse 1.5s infinite; margin-bottom: 10px; }
+        @keyframes pulse { 0% {transform: scale(1);} 50% {transform: scale(1.1);} 100% {transform: scale(1);} }
+        button { 
+            background: white; color: #ff6b6b; border: none; padding: 15px 30px; 
+            border-radius: 50px; font-weight: bold; font-size: 18px; cursor: pointer; margin-top: 20px;
         }
     </style>
 </head>
@@ -74,29 +29,34 @@
     <div class="card">
         <div class="heart">❤️</div>
         <h1>Canım Annem</h1>
-        <p>"Daha çok var, gitme kal..."</p>
-        
-        <button class="btn-play" onclick="calMuzik()">🎵 Şarkıyı Başlat</button>
+        <p>Senin için bir şarkı seçtim...</p>
+        <button onclick="calMuzik()">🎵 Şarkıyı Başlat</button>
     </div>
 
     <audio id="muzikDosyasi">
-        <source src="dip.mp3" type="audio/mpeg">
+        <source src="./dip.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-    function calMuzik() {
-        var sarki = document.getElementById("muzikDosyasi");
-        
-        // Bu komut, şarkıyı o anki sayfanın olduğu klasörden çekmesini sağlar
-        sarki.src = "./dip.mp3"; 
-        
-        sarki.play().then(() => {
-            alert("Seni çok seviyorum anneciğim! ❤️");
-        }).catch(error => {
-            alert("Müzik yükleniyor, lütfen birkaç saniye sonra tekrar butona bas.");
-            console.log(error);
-        });
-    }
-</script>
+        function calMuzik() {
+            var sarki = document.getElementById("muzikDosyasi");
+            
+            // Proje klasör adını ekleyerek yolu garantiye alıyoruz
+            sarki.src = "/Canim-annem/dip.mp3"; 
+            
+            sarki.play().then(() => {
+                alert("Seni çok seviyorum anneciğim! ❤️");
+            }).catch(error => {
+                // Hata devam ederse alternatif yolu dene
+                sarki.src = "dip.mp3";
+                sarki.play().then(() => {
+                    alert("Seni çok seviyorum anneciğim! ❤️");
+                }).catch(e => {
+                    alert("Müzik hala yüklenemedi. Lütfen internet bağlantını kontrol et veya biraz bekle.");
+                });
+            });
+        }
+    </script>
+
 </body>
 </html>
