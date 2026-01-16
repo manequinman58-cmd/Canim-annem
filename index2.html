@@ -1,1 +1,113 @@
 
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canım Annem İçin ❤️</title>
+    <style>
+        /* Sayfa Tasarımı */
+        body { 
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); 
+            height: 100vh; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            color: white; 
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 40px 20px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 85%;
+            max-width: 400px;
+        }
+
+        .heart { 
+            font-size: 70px; 
+            margin-bottom: 20px; 
+            animation: pulse 1.5s infinite; 
+            display: inline-block;
+        }
+
+        @keyframes pulse { 
+            0% { transform: scale(1); } 
+            50% { transform: scale(1.15); } 
+            100% { transform: scale(1); } 
+        }
+
+        h1 { font-size: 28px; margin: 10px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
+        p { font-size: 18px; opacity: 0.9; margin-bottom: 30px; }
+
+        /* Buton Tasarımı */
+        .btn-play { 
+            background: #ffffff; 
+            color: #ff6b6b; 
+            border: none; 
+            padding: 18px 35px; 
+            border-radius: 50px; 
+            font-weight: bold; 
+            font-size: 20px; 
+            cursor: pointer; 
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            outline: none;
+        }
+
+        .btn-play:active {
+            transform: scale(0.95);
+        }
+
+        /* Alt kısım */
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="heart">❤️</div>
+        <h1>Canım Annem</h1>
+        <p>Senin için küçük bir sürprizim var...</p>
+        
+        <button class="btn-play" onclick="baslat()">🎵 Şarkıyı Başlat</button>
+    </div>
+
+    <div class="footer">Seni çok seviyorum!</div>
+
+    <audio id="muzik">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function baslat() {
+            var audio = document.getElementById("muzik");
+            
+            // Madrigal - Dip için çalışan bir link deniyoruz
+            // Eğer şarkı çalmazsa, şarkı dosyasını GitHub'a sarki.mp3 adıyla yükle 
+            // ve aşağıdaki linki "sarki.mp3" olarak değiştir.
+            audio.src = "https://cdn.pixabay.com/audio/2022/05/27/audio_1808f3030c.mp3"; // Örnek bir huzurlu müzik linki
+            
+            audio.play().catch(function(error) {
+                console.log("Müzik çalınamadı, tarayıcı engellemiş olabilir.");
+            });
+
+            alert("Canım annem, bu şarkı benden sana gelsin. Seni çok seviyorum! ❤️");
+        }
+    </script>
+
+</body>
+</html>
