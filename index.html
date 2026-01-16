@@ -8,7 +8,7 @@
         body { 
             background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); 
             height: 100vh; margin: 0; display: flex; align-items: center; justify-content: center; 
-            font-family: 'Segoe UI', sans-serif; color: white; text-align: center;
+            font-family: sans-serif; color: white; text-align: center;
         }
         .card {
             background: rgba(255, 255, 255, 0.25); padding: 40px 20px; border-radius: 30px;
@@ -32,22 +32,22 @@
         <button onclick="calMuzik()">🎵 Şarkıyı Başlat</button>
     </div>
 
-    <audio id="muzikDosyasi"></audio>
+    <audio id="muzik">
+        <source src="https://manequinman58-cmd.github.io/Canim-annem/dip.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
         function calMuzik() {
-            var sarki = document.getElementById("muzikDosyasi");
+            var audio = document.getElementById("muzik");
             
-            // Madrigal - Dip şarkısı için alternatif bir mp3 linki
-            sarki.src = "https://www.mboxdrive.com/Madrigal-Dip.mp3"; 
+            // Az önce senin açtığın linki doğrudan koda veriyoruz
+            audio.src = "https://manequinman58-cmd.github.io/Canim-annem/dip.mp3";
             
-            sarki.play().then(() => {
+            audio.play().then(() => {
                 alert("Seni çok seviyorum anneciğim! ❤️");
-            }).catch(error => {
-                // Eğer üstteki linkte sorun olursa bu yedek linki dener
-                sarki.src = "https://cdn.pixabay.com/audio/2022/05/27/audio_1808f3030c.mp3";
-                sarki.play();
-                alert("Seni çok seviyorum! ❤️ (Yedek müzik çalıyor)");
+            }).catch(e => {
+                alert("Müzik yükleniyor, lütfen butona tekrar bas.");
+                console.error(e);
             });
         }
     </script>
