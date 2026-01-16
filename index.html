@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -9,7 +8,7 @@
         body { 
             background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); 
             height: 100vh; margin: 0; display: flex; align-items: center; justify-content: center; 
-            font-family: sans-serif; color: white; text-align: center;
+            font-family: 'Segoe UI', sans-serif; color: white; text-align: center;
         }
         .card {
             background: rgba(255, 255, 255, 0.25); padding: 40px 20px; border-radius: 30px;
@@ -21,7 +20,6 @@
         button { 
             background: white; color: #ff6b6b; border: none; padding: 15px 35px; 
             border-radius: 50px; font-weight: bold; font-size: 19px; cursor: pointer; margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
     </style>
 </head>
@@ -31,7 +29,7 @@
         <div class="heart">❤️</div>
         <h1>Canım Annem</h1>
         <p>Senin için bir şarkı seçtim...</p>
-        <button id="playBtn" onclick="calMuzik()">🎵 Şarkıyı Başlat</button>
+        <button onclick="calMuzik()">🎵 Şarkıyı Başlat</button>
     </div>
 
     <audio id="muzikDosyasi"></audio>
@@ -39,26 +37,17 @@
     <script>
         function calMuzik() {
             var sarki = document.getElementById("muzikDosyasi");
-            var btn = document.getElementById("playBtn");
             
-            // Klasör adından bağımsız, sadece dosya ismini kullanıyoruz
-            sarki.src = "dip.mp3"; 
-            
-            btn.innerText = "Yükleniyor...";
+            // Madrigal - Dip şarkısı için alternatif bir mp3 linki
+            sarki.src = "https://www.mboxdrive.com/Madrigal-Dip.mp3"; 
             
             sarki.play().then(() => {
-                btn.innerText = "🎵 Şarkıyı Başlat";
                 alert("Seni çok seviyorum anneciğim! ❤️");
             }).catch(error => {
-                // Eğer üstteki başarısız olursa tam yolu deniyoruz
-                sarki.src = "./dip.mp3";
-                sarki.play().then(() => {
-                    btn.innerText = "🎵 Şarkıyı Başlat";
-                    alert("Seni çok seviyorum anneciğim! ❤️");
-                }).catch(e => {
-                    btn.innerText = "🎵 Şarkıyı Başlat";
-                    alert("Müzik dosyasına ulaşılamadı. Lütfen dip.mp3 dosyasının index.html ile aynı yerde olduğundan emin ol.");
-                });
+                // Eğer üstteki linkte sorun olursa bu yedek linki dener
+                sarki.src = "https://cdn.pixabay.com/audio/2022/05/27/audio_1808f3030c.mp3";
+                sarki.play();
+                alert("Seni çok seviyorum! ❤️ (Yedek müzik çalıyor)");
             });
         }
     </script>
