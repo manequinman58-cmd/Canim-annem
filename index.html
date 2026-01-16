@@ -31,7 +31,7 @@
         <div class="heart">❤️</div>
         <h1>Canım Annem</h1>
         <p>Senin için bir şarkı seçtim...</p>
-        <button onclick="calMuzik()">🎵 Şarkıyı Başlat</button>
+        <button id="playBtn" onclick="calMuzik()">🎵 Şarkıyı Başlat</button>
     </div>
 
     <audio id="muzikDosyasi"></audio>
@@ -39,20 +39,25 @@
     <script>
         function calMuzik() {
             var sarki = document.getElementById("muzikDosyasi");
+            var btn = document.getElementById("playBtn");
             
-            // SENİN kullanıcı adın ve depo adınla doğrudan link oluşturduk
-            // Bu link şarkıyı direkt GitHub sunucusundan çeker
-            sarki.src = "https://raw.githubusercontent.com/manequinman58-cmd/Canim-annem/main/dip.mp3"; 
+            // Klasör adından bağımsız, sadece dosya ismini kullanıyoruz
+            sarki.src = "dip.mp3"; 
+            
+            btn.innerText = "Yükleniyor...";
             
             sarki.play().then(() => {
+                btn.innerText = "🎵 Şarkıyı Başlat";
                 alert("Seni çok seviyorum anneciğim! ❤️");
             }).catch(error => {
-                // Eğer hata verirse alternatif kısa yolu dene
-                sarki.src = "dip.mp3";
+                // Eğer üstteki başarısız olursa tam yolu deniyoruz
+                sarki.src = "./dip.mp3";
                 sarki.play().then(() => {
+                    btn.innerText = "🎵 Şarkıyı Başlat";
                     alert("Seni çok seviyorum anneciğim! ❤️");
                 }).catch(e => {
-                    alert("Müzik hala yüklenemedi. Lütfen internetini kontrol et ve tekrar bas.");
+                    btn.innerText = "🎵 Şarkıyı Başlat";
+                    alert("Müzik dosyasına ulaşılamadı. Lütfen dip.mp3 dosyasının index.html ile aynı yerde olduğundan emin ol.");
                 });
             });
         }
