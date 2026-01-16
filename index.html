@@ -29,25 +29,29 @@
         <div class="heart">❤️</div>
         <h1>Canım Annem</h1>
         <p>Senin için bir şarkı seçtim...</p>
-        <button onclick="calMuzik()">🎵 Şarkıyı Başlat</button>
+        <button id="playBtn" onclick="calMuzik()">🎵 Şarkıyı Başlat</button>
     </div>
 
-    <audio id="muzik">
-        <source src="https://manequinman58-cmd.github.io/Canim-annem/dip.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="muzikDosyasi"></audio>
 
     <script>
         function calMuzik() {
-            var audio = document.getElementById("muzik");
+            var sarki = document.getElementById("muzikDosyasi");
+            var btn = document.getElementById("playBtn");
             
-            // Az önce senin açtığın linki doğrudan koda veriyoruz
-            audio.src = "https://manequinman58-cmd.github.io/Canim-annem/dip.mp3";
+            // SENİN çalıştırdığın o linki doğrudan buraya yazdık
+            sarki.src = "https://manequinman58-cmd.github.io/Canim-annem/dip.mp3";
             
-            audio.play().then(() => {
+            btn.innerText = "Yükleniyor...";
+
+            sarki.play().then(() => {
+                btn.innerText = "🎵 Şarkıyı Başlat";
                 alert("Seni çok seviyorum anneciğim! ❤️");
-            }).catch(e => {
-                alert("Müzik yükleniyor, lütfen butona tekrar bas.");
-                console.error(e);
+            }).catch(error => {
+                // Eğer hata verirse dosyayı tekrar yüklemeyi dener
+                sarki.load();
+                sarki.play();
+                alert("Müzik başlıyor, lütfen bir saniye bekle... ❤️");
             });
         }
     </script>
