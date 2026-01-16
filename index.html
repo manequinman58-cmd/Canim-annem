@@ -84,20 +84,19 @@
     </audio>
 
     <script>
-        function calMuzik() {
-            var sarki = document.getElementById("muzikDosyasi");
-            
-            // Şarkıyı çalmaya çalışır
-            sarki.play().then(() => {
-                console.log("Şarkı çalıyor...");
-            }).catch(error => {
-                alert("Şarkı yüklenemedi. Lütfen dosya adının 'dip.mp3' olduğunu kontrol et.");
-            });
-
-            // Butona basınca ekrana çıkan sevgi mesajı
-            alert("Seni dünyalar kadar seviyorum anneciğim! ❤️");
-        }
-    </script>
-
+    function calMuzik() {
+        var sarki = document.getElementById("muzikDosyasi");
+        
+        // Bu komut, şarkıyı o anki sayfanın olduğu klasörden çekmesini sağlar
+        sarki.src = "./dip.mp3"; 
+        
+        sarki.play().then(() => {
+            alert("Seni çok seviyorum anneciğim! ❤️");
+        }).catch(error => {
+            alert("Müzik yükleniyor, lütfen birkaç saniye sonra tekrar butona bas.");
+            console.log(error);
+        });
+    }
+</script>
 </body>
 </html>
